@@ -104,7 +104,6 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
     return () => element.removeEventListener('scroll', handleScroll);
   }, [onScroll, mentors.length]);
 
-  // Set initial scroll position
   useEffect(() => {
     if (scrollRef.current) {
       const cardWidth = 300 + 24;
@@ -130,7 +129,6 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
                 animate={{ 
                   opacity: isActive ? 0 : 1,
                   scale: isActive ? 0.9 : 1,
-                  filter: isActive ? 'grayscale(100%)' : 'grayscale(0%)',
                   y: isActive ? -20 : 0
                 }}
                 transition={{ 
