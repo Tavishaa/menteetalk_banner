@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import MentorCard from './MentorCard';
+import { motion } from 'framer-motion';
 
-const mentors = [
+export const mentors = [
   {
     name: "Dr. Apoorva Ranjan",
     role: "Co-founder of Venture Catalysts",
@@ -70,8 +71,13 @@ const mentors = [
   }
 ];
 
-const MentorGrid = ({ onScroll }) => {
+const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
   const scrollRef = useRef(null);
+  const [displayMentors, setDisplayMentors] = React.useState([]);
+
+  useEffect(() => {
+    setDisplayMentors([...mentors, ...mentors, ...mentors]);
+  }, [mentors]);
 
   useEffect(() => {
     const element = scrollRef.current;
@@ -80,36 +86,66 @@ const MentorGrid = ({ onScroll }) => {
     const handleScroll = () => {
       const scrollLeft = element.scrollLeft;
       const cardWidth = 300 + 24; // card width + gap
-      const activeIndex = Math.min(
-        Math.floor((scrollLeft + cardWidth / 2) / cardWidth),
-        mentors.length - 1
-      );
-      onScroll(activeIndex);
+      const totalWidth = cardWidth * mentors.length;
+      
+      // Calculate current index
+      const currentIndex = Math.round(scrollLeft / cardWidth) % mentors.length;
+      onScroll(currentIndex);
+
+      // Handle infinite scroll
+      if (scrollLeft >= totalWidth * 2 - cardWidth) {
+        element.scrollLeft = totalWidth;
+      } else if (scrollLeft <= totalWidth - cardWidth) {
+        element.scrollLeft = totalWidth * 2 - cardWidth;
+      }
     };
 
     element.addEventListener('scroll', handleScroll);
     return () => element.removeEventListener('scroll', handleScroll);
-  }, [onScroll]);
+  }, [onScroll, mentors.length]);
+
+  // Set initial scroll position
+  useEffect(() => {
+    if (scrollRef.current) {
+      const cardWidth = 300 + 24;
+      scrollRef.current.scrollLeft = cardWidth * mentors.length;
+    }
+  }, [mentors.length]);
 
   return (
-    <div className="w-full">
+    <div className="relative">
       <div 
         ref={scrollRef}
-        className="flex overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
+        className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"
       >
-        <div className="flex space-x-6">
-          {mentors.map((mentor, index) => (
-            <div 
-              key={mentor.name} 
-              className="flex-shrink-0 w-[300px] snap-center"
-            >
-              <MentorCard 
-                {...mentor} 
-                delay={index * 0.2} 
-                isActive={index === Math.floor(scrollRef.current?.scrollLeft / (300 + 24) || 0)}
-              />
-            </div>
-          ))}
+        <div className="flex space-x-6 px-[calc(50vw-350px)]">
+          {displayMentors.map((mentor, index) => {
+            const currentIndex = index % mentors.length;
+            const isActive = currentIndex === activeIndex;
+
+            return (
+              <motion.div 
+                key={`${mentor.name}-${index}`}
+                className="flex-shrink-0 w-[300px] snap-center"
+                animate={{ 
+                  opacity: isActive ? 0 : 1,
+                  scale: isActive ? 0.9 : 1,
+                  filter: isActive ? 'grayscale(100%)' : 'grayscale(0%)',
+                  y: isActive ? -20 : 0
+                }}
+                transition={{ 
+                  duration: 0.4,
+                  ease: "easeOut"
+                }}
+              >
+                <MentorCard 
+                  {...mentor} 
+                  delay={currentIndex * 0.2} 
+                  isActive={false}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>
