@@ -87,12 +87,11 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
       const scrollLeft = element.scrollLeft;
       const cardWidth = 300 + 24; // card width + gap
       const totalWidth = cardWidth * mentors.length;
-      
-      // Calculate current index
+
       const currentIndex = Math.round(scrollLeft / cardWidth) % mentors.length;
       onScroll(currentIndex);
 
-      // Handle infinite scroll with smooth behavior
+      // infinite scroll
       if (scrollLeft >= totalWidth * 2 - cardWidth) {
         element.style.scrollBehavior = 'auto';
         element.scrollLeft = totalWidth;
@@ -115,7 +114,6 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
   useEffect(() => {
     if (scrollRef.current) {
       const cardWidth = 300 + 24;
-      // Set initial scroll to show the first set of cards
       requestAnimationFrame(() => {
         scrollRef.current.scrollLeft = cardWidth * mentors.length;
       });

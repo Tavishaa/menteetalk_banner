@@ -10,7 +10,19 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
       transition={{ duration: 0.8, delay: 0.2 }}
       className="relative w-[300px] h-[600px] sticky top-24"
     >
-      <div className="absolute inset-0 bg-black rounded-[2.5rem] shadow-xl">
+      <div className="absolute inset-0 bg-black rounded-[2.5rem] shadow-xl overflow-hidden">
+        <motion.div
+          animate={{ 
+            x: ["100%", "-100%"],
+            opacity: [0, 0.3, 0]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 3
+          }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent skew-x-12"
+        />
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-5 bg-black rounded-b-2xl" />
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 mt-2 bg-gray-800 rounded-full" />
         <div className="absolute inset-2 bg-white rounded-[2rem] overflow-hidden">
@@ -52,7 +64,7 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
             </div>
           </div>
           
-          {/* Top Mentors Section */}
+          
           <div className="px-4 pb-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -96,7 +108,7 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
             </motion.div>
           </AnimatePresence>
 
-          {/* All Mentors Section */}
+          
           <div className="absolute bottom-[52px] left-0 right-0 bg-white border-t">
             <div className="p-4">
               <div className="flex items-center justify-between">
@@ -106,7 +118,7 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
             </div>
           </div>
 
-          {/* Bottom Navigation */}
+          
           <div className="absolute bottom-0 left-0 right-0 border-t bg-white p-2">
             <div className="flex justify-around items-center">
               <span className="p-1.5 text-sm text-blue-600">⌂</span>
