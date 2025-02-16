@@ -10,7 +10,7 @@ This is a responsive and visually appealing landing page designed for the Mentee
 
 ## Features
 
-- Fully responsive design
+- Responsive design
 - Smooth animations and transitions with Framer Motion
 - Lightweight and optimized for performance
 
