@@ -1,21 +1,21 @@
 import React from 'react';
-import { MessageSquare } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-99">
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <MessageSquare className="w-6 h-6 text-blue-600" />
-          <span className="font-bold text-xl">MenteeTalk</span>
+    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-99">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-1">
+          <span className="text-blue-600 text-2xl">📚</span>
+          <span className="font-bold text-xl text-gray-900">Mentee<span className="text-blue-600">Talk</span></span>
         </div>
-        <div className="flex items-center space-x-6">
-          <a href="#" className="text-gray-600 hover:text-gray-900">About</a>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">About</a>
+          <a href="#" className="text-blue-600 font-medium text-sm px-4 py-2 rounded-full border-2 border-blue-600 hover:bg-blue-50 transition-colors">
             Become a Mentor
-          </button>
-        </div>
-      </nav>
+          </a>
+        </nav>
+      </div>
     </header>
   );
 };

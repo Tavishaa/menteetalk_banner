@@ -3,21 +3,28 @@ import { motion } from 'framer-motion';
 
 const CTASection = () => {
   return (
-    <section className="py-16 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-6"
-      >
-        <button className="bg-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-purple-700 transition-colors">
-          Sign Up for Free
-        </button>
-        <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-purple-50 transition-colors ml-4">
+    <div className="text-center py-24 mt-12">
+      <div className="flex items-center justify-center gap-6 flex-wrap">
+        <motion.a
+          href="#"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-500 text-white px-8 py-3.5 rounded-full font-medium hover:from-purple-700 hover:to-purple-600 transition-all shadow-lg shadow-purple-200"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Sign up for free
+          <span className="text-lg">→</span>
+        </motion.a>
+        <motion.a
+          href="#"
+          className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-3.5 rounded-full font-medium border-2 border-purple-600 hover:bg-purple-50 transition-colors"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
           Become a Mentor
-        </button>
-      </motion.div>
-    </section>
+          <span className="text-lg">→</span>
+        </motion.a>
+      </div>
+    </div>
   );
 };
 

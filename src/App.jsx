@@ -14,11 +14,11 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <div className="relative max-w-[1400px] mx-auto px-4 py-12">
-          <div className="absolute left-1/2 -translate-x-1/2 z-10 top-[200px]">
+        <div className="relative max-w-[1400px] mx-auto px-4 -mt-12">
+          <div className="absolute left-1/2 -translate-x-1/2 z-10 top-[50px]">
             <PhoneFrame activeIndex={activeIndex} mentors={mentors} />
           </div>
-          <div className="pt-[400px]">
+          <div className="pt-[250px] pb-32">
             <MentorGrid 
               onScroll={setActiveIndex} 
               mentors={mentors} 

@@ -107,7 +107,10 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
   useEffect(() => {
     if (scrollRef.current) {
       const cardWidth = 300 + 24;
-      scrollRef.current.scrollLeft = cardWidth * mentors.length;
+      // Set initial scroll to show the first set of cards
+      requestAnimationFrame(() => {
+        scrollRef.current.scrollLeft = cardWidth * mentors.length;
+      });
     }
   }, [mentors.length]);
 
@@ -128,17 +131,18 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
                 className="flex-shrink-0 w-[300px] snap-center"
                 animate={{ 
                   opacity: isActive ? 0 : 1,
-                  scale: isActive ? 0.9 : 1,
-                  y: isActive ? -20 : 0
+                  scale: isActive ? 0.95 : 1,
+                  filter: 'grayscale(1)',
+                  y: isActive ? -10 : 0
                 }}
                 transition={{ 
-                  duration: 0.4,
-                  ease: "easeOut"
+                  duration: 0.2,
+                  ease: [0.32, 0.72, 0, 1]
                 }}
               >
                 <MentorCard 
                   {...mentor} 
-                  delay={currentIndex * 0.2} 
+                  delay={0}
                   isActive={false}
                 />
               </motion.div>
