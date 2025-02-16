@@ -76,7 +76,8 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
   const [displayMentors, setDisplayMentors] = React.useState([]);
 
   useEffect(() => {
-    setDisplayMentors([...mentors, ...mentors, ...mentors]);
+    // Add more copies to prevent edge glitches
+    setDisplayMentors([...mentors, ...mentors, ...mentors, ...mentors]);
   }, [mentors]);
 
   useEffect(() => {
@@ -87,20 +88,20 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
       const scrollLeft = element.scrollLeft;
       const cardWidth = 300 + 24; // card width + gap
       const totalWidth = cardWidth * mentors.length;
-
+      
       const currentIndex = Math.round(scrollLeft / cardWidth) % mentors.length;
       onScroll(currentIndex);
 
-      // infinite scroll
-      if (scrollLeft >= totalWidth * 2 - cardWidth) {
+      // infinite scroll with buffer
+      if (scrollLeft >= totalWidth * 2.5) {
         element.style.scrollBehavior = 'auto';
-        element.scrollLeft = totalWidth;
+        element.scrollLeft = totalWidth * 1.5;
         requestAnimationFrame(() => {
           element.style.scrollBehavior = 'smooth';
         });
-      } else if (scrollLeft <= totalWidth - cardWidth) {
+      } else if (scrollLeft <= totalWidth * 0.5) {
         element.style.scrollBehavior = 'auto';
-        element.scrollLeft = totalWidth * 2 - cardWidth;
+        element.scrollLeft = totalWidth * 1.5;
         requestAnimationFrame(() => {
           element.style.scrollBehavior = 'smooth';
         });
@@ -114,8 +115,9 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
   useEffect(() => {
     if (scrollRef.current) {
       const cardWidth = 300 + 24;
+      // Center the initial scroll position
       requestAnimationFrame(() => {
-        scrollRef.current.scrollLeft = cardWidth * mentors.length;
+        scrollRef.current.scrollLeft = cardWidth * mentors.length * 1.5;
       });
     }
   }, [mentors.length]);
@@ -127,7 +129,7 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
         className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"
         style={{ scrollBehavior: 'smooth' }}
       >
-        <div className="flex space-x-6 px-[calc(50vw-350px)]">
+        <div className="flex space-x-6 px-[calc(50vw-150px)]"> {/* Adjusted padding */}
           {displayMentors.map((mentor, index) => {
             const currentIndex = index % mentors.length;
             const isActive = currentIndex === activeIndex;
