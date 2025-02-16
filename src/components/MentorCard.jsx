@@ -10,7 +10,7 @@ const MentorCard = ({ name, role, expertise, experience, availability, rating, s
       className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
     >
       <div className="relative">
-        <div className="w-20 h-20 mx-auto mb-1 rounded-full overflow-hidden ring-4 ring-gray-50">
+        <div className="w-24 h-24 mx-auto mb-1 rounded-full overflow-hidden ring-4 ring-gray-50">
           <img 
             src={isActive ? colorImageUrl : imageUrl} 
             alt={name}
@@ -29,8 +29,8 @@ const MentorCard = ({ name, role, expertise, experience, availability, rating, s
         </div>
       </div>
       <div className="text-center mb-3 mt-2">
-        <h3 className="font-bold text-base text-gray-900 mb-0.5 font-display">{name}</h3>
-        <p className="text-blue-600 font-medium font-sans text-xs">{role}</p>
+        <h3 className="font-bold text-lg text-gray-900 mb-0.5 font-display">{name}</h3>
+        <p className="text-blue-600 font-medium font-sans text-sm">{role}</p>
       </div>
       <div className="space-y-2">
         <div className="flex items-center justify-between text-gray-600 text-xs font-medium font-sans">

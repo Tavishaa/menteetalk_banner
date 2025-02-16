@@ -17,7 +17,7 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
           {/* Phone UI Header */}
           <div className="p-4 pb-2">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-base font-semibold text-gray-900 font-display">Hello Namaste!</h2>
+              <h2 className="text-base font-semibold text-gray-900 font-display">Hello Tavishaa!</h2>
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-gray-50 rounded-full flex items-center justify-center">
                   <span className="text-xs">🔔</span>
@@ -75,43 +75,44 @@ const PhoneFrame = ({ activeIndex, mentors }) => {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeIndex}
-              className="px-4 h-[280px] overflow-visible"
+              className="px-4 h-[340px] overflow-visible flex items-center justify-center"
               initial={{ opacity: 0, y: 10, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ 
                 duration: 0.2,
                 ease: [0.32, 0.72, 0, 1]
               }}
             >
-              {mentors[activeIndex] && (
-                <MentorCard 
-                  {...mentors[activeIndex]} 
-                  isActive={true}
-                  delay={0}
-                />
-              )}
+              <div className="transform scale-[0.95]">
+                {mentors[activeIndex] && (
+                  <MentorCard 
+                    {...mentors[activeIndex]} 
+                    isActive={true}
+                    delay={0}
+                  />
+                )}
+              </div>
             </motion.div>
           </AnimatePresence>
 
           {/* All Mentors Section */}
-          <div className="sticky bottom-12 bg-white border-t">
+          <div className="absolute bottom-[52px] left-0 right-0 bg-white border-t">
             <div className="p-4">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-gray-900 font-display">All Mentors</h3>
                 <span className="text-blue-600 text-xs font-medium">View all</span>
               </div>
-              
             </div>
           </div>
 
           {/* Bottom Navigation */}
           <div className="absolute bottom-0 left-0 right-0 border-t bg-white p-2">
             <div className="flex justify-around items-center">
-              <span className="p-1.5 text-sm text-blue-600">🏠</span>
-              <span className="p-1.5 text-sm text-gray-400">👥</span>
-              <span className="p-1.5 text-sm text-gray-400">✍️</span>
-              <span className="p-1.5 text-sm text-gray-400">👤</span>
+              <span className="p-1.5 text-sm text-blue-600">⌂</span>
+              <span className="p-1.5 text-sm text-gray-400">⊢⊣</span>
+              <span className="p-1.5 text-sm text-gray-400">☰</span>
+              <span className="p-1.5 text-sm text-gray-400">◯</span>
             </div>
           </div>
         </div>

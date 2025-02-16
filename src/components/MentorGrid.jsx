@@ -92,11 +92,19 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
       const currentIndex = Math.round(scrollLeft / cardWidth) % mentors.length;
       onScroll(currentIndex);
 
-      // Handle infinite scroll
+      // Handle infinite scroll with smooth behavior
       if (scrollLeft >= totalWidth * 2 - cardWidth) {
+        element.style.scrollBehavior = 'auto';
         element.scrollLeft = totalWidth;
+        requestAnimationFrame(() => {
+          element.style.scrollBehavior = 'smooth';
+        });
       } else if (scrollLeft <= totalWidth - cardWidth) {
+        element.style.scrollBehavior = 'auto';
         element.scrollLeft = totalWidth * 2 - cardWidth;
+        requestAnimationFrame(() => {
+          element.style.scrollBehavior = 'smooth';
+        });
       }
     };
 
@@ -119,6 +127,7 @@ const MentorGrid = ({ onScroll, mentors, activeIndex }) => {
       <div 
         ref={scrollRef}
         className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+        style={{ scrollBehavior: 'smooth' }}
       >
         <div className="flex space-x-6 px-[calc(50vw-350px)]">
           {displayMentors.map((mentor, index) => {
