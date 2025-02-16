@@ -16,10 +16,10 @@ This is a responsive and visually appealing landing page designed for the Mentee
 
 ## Tech Stack
 
-- React
-- Tailwind CSS
-- Framer Motion
-- HTML, CSS, JavaScript
+- React - Frontend framework
+- Tailwind CSS - Styling
+- Framer Motion - Animations
+- Vite - Build tool
 
 ## Notes
 
